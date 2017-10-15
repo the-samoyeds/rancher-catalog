@@ -16,15 +16,15 @@ services:
     entrypoint: /bin/true
     labels:
       io.rancher.container.start_once: "true"
-    volumes:
-      - /etc/nginx/conf.d
+    # volumes:
+    #   - /etc/nginx/conf.d
   provt:
     image: samoyeds/provt:0.1.1
     entrypoint: /bin/true
     labels:
       io.rancher.container.start_once: "true"
-    volumes:
-      - /app/dist
+    # volumes:
+    #   - /app/dist
 
   provt-server:
     image: samoyeds/provt-server:0.1.1
