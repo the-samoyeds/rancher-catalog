@@ -28,7 +28,7 @@ services:
   mongo:
     image: mongo:3.4
     labels:
-      io.racher.sidekicks: mongo-data
+      io.rancher.sidekicks: "mongo-data"
     volumes_from:
       - mongo-data
   mongo-data:
