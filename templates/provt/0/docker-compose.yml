@@ -42,3 +42,22 @@ services:
       io.rancher.container.start_once: "true"
     volumes:
       - /data/db
+
+  letsencrypt:
+    image: janeczku/rancher-letsencrypt:v0.5.0
+    labels:
+      io.rancher.container.create_agent: "true"
+      io.rancher.container.agent.role: environment
+    environment:
+      - "API_VERSION=Production"
+      - "CERT_NAME=${PROVT_DOMAIN}"
+      - "DNS_RESOLVERS=8.8.8.8:53,8.8.4.4:53"
+      - "DOMAINS=${PROVT_DOMAIN}"
+      - "EMAIL=${PROVT_EMAIL}"
+      - "EULA=Yes"
+      - "PROVIDER=HTTP"
+      - "PUBLIC_KEY_TYPE=RSA-2048"
+      - "RENEWAL_PERIOD_DAYS=20"
+      - "RENEWAL_TIME=12"
+    volumes:
+      - /var/lib/rancher:/var/lib/rancher
