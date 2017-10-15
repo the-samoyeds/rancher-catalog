@@ -1,7 +1,7 @@
 version: "2"
 services:
   proxy:
-    image: samoyeds/provt-nginx:0.1.1
+    image: samoyeds/provt-proxy:0.1.1
     # port:
     #   - "80"
     labels:
