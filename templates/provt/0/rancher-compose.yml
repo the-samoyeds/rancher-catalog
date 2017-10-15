@@ -1,6 +1,6 @@
 .catalog:
   name: Provt
-  version: 0.1.0
+  version: 0.1.1
   questions:
     - variable: PROVT_DOMAIN
       label: Provt Domain Name
