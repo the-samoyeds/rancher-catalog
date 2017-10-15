@@ -1,0 +1,5 @@
+name: Provt
+description: Trust files from untrusted sources.
+version: 0.1.0
+maintainer: The Samoyeds <github.com/the-samoyeds>
+projectURL: https://github.com/the-samoyeds/provt

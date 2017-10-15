@@ -1,0 +1,44 @@
+version: "2"
+services:
+  proxy:
+    image: nginx:stable
+    # port:
+    #   - "80"
+    labels:
+      io.rancher.sidekicks: provt,proxy-conf
+    volumes_from:
+      - proxy-conf
+      - provt
+  proxy-conf:
+    image: samoyeds/provt-nginx-conf:0.1.0
+    entrypoint: /bin/true
+    labels:
+      io.rancher.container.start_once: "true"
+    volumes:
+      - /etc/nginx/nginx.conf
+  provt:
+    image: samoyeds/provt:0.1.0
+    entrypoint: /bin/true
+    labels:
+      io.rancher.container.start_once: "true"
+    volumes:
+      - /app
+
+  provt-server:
+    image: samoyeds/provt-server:0.1.0
+    environment:
+      - MONGO_URI=mongodb://mongo/provt
+
+  mongo:
+    image: mongo:3.4
+    labels:
+      io.racher.sidekicks: mongo-data
+    volumes_from:
+      - mongo-data
+  mongo-data:
+    image: busybox
+    entrypoint: /bin/true
+    labels:
+      io.rancher.container.start_once: "true"
+    volumes:
+      - /data/db

@@ -1,0 +1,48 @@
+.catalog:
+  name: Provt
+  version: 0.1.0
+  questions:
+    - variable: PROVT_DOMAIN
+      label: Provt Domain Name
+      type: string
+      default: provt.xyz
+      required: true
+
+    - variable: PROVT_EMAIL
+      label: Provt E-mail
+      type: string
+      default: hi@provt.xyz
+      required: true
+
+version: "2"
+services:
+  proxy:
+    scale: 1
+    health_check:
+      port: 80
+      interval: 2000
+      initializing_timeout: 20000
+      unhealthy_threshold: 3
+      strategy: recreate
+      healthy_threshold: 2
+      response_timeout: 2000
+  provt-server:
+    scale: 1
+    health_check:
+      port: 3000
+      interval: 2000
+      initializing_timeout: 20000
+      unhealthy_threshold: 3
+      strategy: recreate
+      healthy_threshold: 2
+      response_timeout: 2000
+  mongo:
+    scale: 1
+    health_check:
+      port: 27017
+      interval: 2000
+      initializing_timeout: 20000
+      unhealthy_threshold: 3
+      strategy: recreate
+      healthy_threshold: 2
+      response_timeout: 2000
